@@ -2,7 +2,6 @@ import * as Yup from "yup"
 import { Op } from "sequelize";
 import { parseISO, roundToNearestHours } from 'date-fns';
 import User from "../models/User.js";
-import { password } from "../../config/database.js";
 import Mail from "../../lib/Mail.js";
 import Queue from "../../lib/Queue.js";
 import WelcomeEmailJob from "../jobs/WelcomeEmailJob.js";

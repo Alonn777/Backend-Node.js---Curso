@@ -1,11 +1,10 @@
 import express from 'express'
 import routes from './routes.js'
 import './database/index.js'
-import authMiddlewares from "./app/middlewares/auth.js"
+ import authMiddlewares from "./app/middlewares/auth.js"
 import * as Sentry from "@sentry/node"
 import SentryConfig from './config/Sentry.js'
 import "dotenv/config"
-import Youch from "youch"
 import { error } from 'console'
 
 
@@ -21,7 +20,6 @@ class App {
     // este é o método middleware ele é usado para controlarmos a rota 
     middlewares() {
         this.server.use(express.json());
-        this.server.use(authMiddlewares)
     }
     routes() {
         this.server.use(routes)

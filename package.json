@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "type": "module",
   "dependencies": {
     "@sentry/node": "^10.50.0",
     "bcryptjs": "^3.0.3",
@@ -29,6 +30,7 @@
   },
   "scripts": {
     "dev": "nodemon ./src/server.js",
-    "queue": "nodemon ./src/queue.js"
+    "start": "node ./src/server.js",
+    "queue": "node ./src/queue.js"
   }
 }

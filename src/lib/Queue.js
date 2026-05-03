@@ -1,7 +1,7 @@
 import Bee from "bee-queue"
 import "dotenv/config"
-import WelcomeEmailJob from "../app/jobs/WelcomeEmailJob";
-import redisConfig from "../config/redis";
+import WelcomeEmailJob from "../app/jobs/WelcomeEmailJob.js";
+import redisConfig from "../config/redis.js";
 
 const jobs = [ WelcomeEmailJob]
 class Queue {

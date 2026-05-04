@@ -7,7 +7,12 @@ import database from "../config/database.js";
 const models = [Customers, Contact, User]
 class Database {
     constructor() {
-        this.connection = new Sequelize(config);
+        this.connection = new Sequelize(
+            config.url || config.database,
+            config.username,
+            config.password,
+            config
+        )
         this.init()
         this.associate()
     }

@@ -3,7 +3,7 @@ import { Op } from "sequelize";
 import { parseISO, roundToNearestHours } from 'date-fns';
 import User from "../models/User.js";
 import Mail from "../../lib/Mail.js";
-import Queue from "../../lib/Queue.js";
+// import Queue from "../../lib/Queue.js";
 import WelcomeEmailJob from "../jobs/WelcomeEmailJob.js";
 
 class UsersControllers {
@@ -126,7 +126,7 @@ class UsersControllers {
             text: `olá ${name} é uma honra ter você consoco!`
 
         })
-        await Queue.add(WelcomeEmailJob.key, { name, email })
+        // await Queue.add(WelcomeEmailJob.key, { name, email })
         return res.status(201).json({ id, name, email, createdAt, updatedAt })
     }
 

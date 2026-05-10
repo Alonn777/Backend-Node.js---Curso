@@ -1,17 +1,16 @@
 import express from 'express'
 import routes from './routes.js'
 import './database/index.js'
- import authMiddlewares from "./app/middlewares/auth.js"
+import authMiddlewares from "./app/middlewares/auth.js"
 import * as Sentry from "@sentry/node"
 import SentryConfig from './config/Sentry.js'
 import "dotenv/config"
-import { error } from 'console'
 
 
 class App {
     constructor() {
         this.server = express()
-        Sentry.init(SentryConfig)
+        // Sentry.init(SentryConfig)
         this.middlewares()
         this.routes()
         this.exceptionHandler()
@@ -23,10 +22,11 @@ class App {
     }
     routes() {
         this.server.use(routes)
-        Sentry.setupExpressErrorHandler(this.server);
 
     }
     exceptionHandler() {
+        Sentry.setupExpressErrorHandler(this.server);
+
         this.server.use(async (error, req, res, next) => {
             if (process.env.NODE_ENV === "development") {
                 console.error(error)

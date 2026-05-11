@@ -14,6 +14,7 @@ const routes = new Router()
 
 
 routes.post("/sessions", SessionController.create)
+routes.post("/users", UsersController.create)
 
 // Controla o acesso aos recurso da api
 routes.use(auth)
@@ -36,14 +37,13 @@ routes.delete("/customers/:customerID/contacts/:id", ContactController.delete)
 
 routes.get("/users", UsersController.index)
 routes.get("/users/:id", UsersController.find)
-routes.post("/users", UsersController.create)
 routes.put("/users/:id", UsersController.update)
 routes.delete("/users/:id", UsersController.delete)
 
 
-routes.post("/files", upload.single("file"), (req, res)=>{
+routes.post("/files", upload.single("file"), (req, res) => {
     console.log(req.file)
-    return res.status(201).json({message: "OK"})
+    return res.status(201).json({ message: "OK" })
 })
 
 

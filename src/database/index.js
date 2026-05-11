@@ -3,16 +3,22 @@ import config from '../config/database.js'
 import Customers from '../app/models/Customers.js'
 import Contact from '../app/models/Contact.js'
 import User from '../app/models/User.js'
-import database from "../config/database.js";
+
 const models = [Customers, Contact, User]
+
 class Database {
     constructor() {
-        this.connection = new Sequelize(
-            config.url || config.database,
-            config.username,
-            config.password,
-            config
-        )
+        if (config.url) {
+            this.connection = new Sequelize(config.url, config)
+        } else {
+            this.connection = new Sequelize(
+                config.database,
+                config.username,
+                config.password,
+                config
+            )
+        }
+
         this.init()
         this.associate()
     }
@@ -20,6 +26,7 @@ class Database {
     init() {
         models.forEach(model => model.init(this.connection))
     }
+
     associate() {
         models.forEach((model) => {
             if (model.associate) {
@@ -28,6 +35,5 @@ class Database {
         })
     }
 }
-
 
 export default new Database()
